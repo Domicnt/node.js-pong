@@ -11,7 +11,7 @@ let nums = new Image();
 nums.src = 'images/numbers.png';
 
 //set up socket
-var socket = io.connect('http://localhost');
+var socket = io.connect('https://nodejs-pong.herokuapp.com');
 
 //local variables
 let p1 = {
