@@ -96,6 +96,7 @@ let mouse = false;
 window.addEventListener('keydown', event => {
     if (event.key == 'w' || event.keyCode == 38) up = true;
     if (event.key == 's' || event.keyCode == 40) down = true;
+    mouse = false;
 }, false);
 window.addEventListener('keyup', event => {
     if (event.key == 'w' || event.keyCode == 38) up = false;
@@ -107,7 +108,7 @@ window.addEventListener('mousemove', event => {
     mouse = true;
 }, false);
 
-let deadzone = height / 200;
+let deadzone = height / 100;
 setInterval(function () {
     if (player == 1 && mouse) {
         if (map(y, 270, height) < p1.y - deadzone) socket.emit('up', ID);
