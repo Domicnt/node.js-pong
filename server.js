@@ -63,6 +63,14 @@ io.on('connection', function (socket) {
     connectionIDs.push(ID);
     socket.emit('ID', ID);
 
+    if (connections.length == 1) {
+        socket.emit('player', 1);
+    } else if (connections.length == 2) {
+        socket.emit('player', 2);
+    } else {
+        socket.emit('queue', connections.length);
+    }
+
     //on this connection sending an input
     socket.on('up', function (ID) {
         if (ID == connectionIDs[0]) {
@@ -85,12 +93,20 @@ io.on('connection', function (socket) {
 
     //when this connection disconnects
     socket.on('disconnect', function () {
+        let disconnected = 0;
         for (let i = 0; i < connectionIDs.length; i++) {
             if (ID == connectionIDs[i]) {
-                connections.splice(i, 1);
-                connectionIDs.splice(i, 1);
+                disconnected = i;
+                connections.splice(disconnected, 1);
+                connectionIDs.splice(disconnected, 1);
                 break;
             }
+        }
+        for (let i = 0; i < connectionIDs.length; i++) {
+            if (i < 2) {
+                connections[i].emit('player', i + 1);
+            }
+            socket.emit('queue', i + 1);
         }
     });
 });

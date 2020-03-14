@@ -11,6 +11,7 @@ let nums = new Image();
 nums.src = 'images/numbers.png';
 
 //set up socket
+//var socket = io.connect('http://localhost/');
 var socket = io.connect('https://nodejs-pong.herokuapp.com');
 
 //local variables
@@ -63,7 +64,16 @@ function draw() {
     context.stroke();
 }
 
+//which player 'tis
+let player = 0;
+//if not playing position in queue
+let queue = 0;
+
 //on recieving variables from server
+socket.on('player', function (data) {
+    playing = true;
+    player = data;
+});
 socket.on('ID', function (data) { ID = data; });
 socket.on('ball', function (data) {
     ball = data;
@@ -88,8 +98,36 @@ window.addEventListener('keyup', event => {
     if (event.key == 'w' || event.keyCode == 38) up = false;
     if (event.key == 's' || event.keyCode == 40) down = false;
 }, false);
+let y = 0;
+window.addEventListener('mousemove', event => {
+    y = Math.round(event.clientY);
+}, false);
 
+let deadzone = height / 200;
 setInterval(function () {
+    if (player == 1) {
+        if (map(y, 270, height) < p1.y - deadzone) {
+            up = true;
+            down = false;
+        } else if (map(y, 270, height) > p1.y + deadzone) {
+            up = false;
+            down = true;
+        } else {
+            up = false;
+            down = false;
+        }
+    } else if (player == 2) {
+        if (map(y, 270, height) < p2.y - deadzone) {
+            up = true;
+            down = false;
+        } else if (map(y, 270, height) > p2.y + deadzone) {
+            up = false;
+            down = true;
+        } else {
+            up = false;
+            down = false;
+        }
+    }
     if (up) socket.emit('up', ID);
     if (down) socket.emit('down', ID);
 }, 10);

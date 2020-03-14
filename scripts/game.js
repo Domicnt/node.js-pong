@@ -43,10 +43,8 @@ exports.step = function (p1, p2, ball, width, height) {
 
 function reset(p1, p2, ball, width, height) {
     p1.y = height / 2;
-    p1.score = 0;
 
     p2.y = height / 2;
-    p2.score = 0;
 
     ball.x = width / 2;
     ball.y = height / 2;
