@@ -74,6 +74,7 @@ socket.on('player', function (data) {
     playing = true;
     player = data;
 });
+socket.on('queue', function (data) { queue = data; });
 socket.on('ID', function (data) { ID = data; });
 socket.on('ball', function (data) {
     ball = data;
@@ -91,6 +92,7 @@ socket.on('p2', function (data) {
 let up = false;
 let down = false;
 let y = 0;
+let mouse = false;
 window.addEventListener('keydown', event => {
     if (event.key == 'w' || event.keyCode == 38) up = true;
     if (event.key == 's' || event.keyCode == 40) down = true;
@@ -98,22 +100,21 @@ window.addEventListener('keydown', event => {
 window.addEventListener('keyup', event => {
     if (event.key == 'w' || event.keyCode == 38) up = false;
     if (event.key == 's' || event.keyCode == 40) down = false;
-    if (player == 1) y = map(p1.y, height, 270);
-    else if (player == 2) y = map(p2.y, height, 270);
+    mouse = false;
 }, false);
 window.addEventListener('mousemove', event => {
     y = Math.round(event.clientY);
+    mouse = true;
 }, false);
 
 let deadzone = height / 200;
 setInterval(function () {
-    if (player == 1 && !up && !down) {
+    if (player == 1 && mouse) {
         if (map(y, 270, height) < p1.y - deadzone) socket.emit('up', ID);
         else if (map(y, 270, height) > p1.y + deadzone) socket.emit('down', ID);
-    } else if (player == 2 && !up && !down) {
+    } else if (player == 2 && mouse) {
         if (map(y, 270, height) < p2.y - deadzone) socket.emit('up', ID);
         else if (map(y, 270, height) > p2.y + deadzone) socket.emit('down', ID);
-    }
-    if (up) socket.emit('up', ID);
-    if (down) socket.emit('down', ID);
+    } else if (up) socket.emit('up', ID);
+    else if (down) socket.emit('down', ID);
 }, 10);
