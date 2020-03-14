@@ -15,14 +15,16 @@ exports.step = function (p1, p2, ball, width, height) {
     if (overlap(p1, ball)) {
         ball.velX = Math.abs(ball.velX);
         ball.velY += .5 * (Math.round(Math.random()) - .5);
-        p1.score++;
     } else if (overlap(p2, ball)) {
         ball.velX = -Math.abs(ball.velX);
         ball.velY += .5 * (Math.round(Math.random()) - .5);
-        p2.score++;
     }
-    if (ball.x - ball.r <= 0 || ball.x + ball.r >= width) {
+    if (ball.x + ball.r >= width) {
         reset(p1, p2, ball, width, height);
+        p1.score++;
+    } else if (ball.x - ball.r <= 0) {
+        reset(p1, p2, ball, width, height);
+        p2.score++;
     }
     ball.velX *= 1.0005;
     ball.velY *= 1.0005;
