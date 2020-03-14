@@ -50,10 +50,10 @@ function draw() {
     context.fillRect(map(ball.x, width, 480) - map(ball.r, width, 480), map(ball.y, height, 270) - map(ball.r, height, 270), 2 * map(ball.r, height, 270), 2 * map(ball.r, height, 270));
     //p1
     context.fillRect(map(p1.x, width, 480) - map(p1.w, width, 480) / 2, map(p1.y, height, 270) - map(p1.h, height, 270) / 2, map(p1.w, width, 480), map(p1.h, height, 270));
-    context.drawImage(nums, p1.score * 3, 0, 3, 5, (width / 3) - width / 15/2, height / 10, width / 15, height / 9);
+    context.drawImage(nums, p1.score * 3, 0, 3, 5, (width / 3) - width / 15 / 2, height / 10, width / 15, height / 9);
     //p2
     context.fillRect(map(p2.x, width, 480) - map(p2.w, width, 480) / 2, map(p2.y, height, 270) - map(p2.h, height, 270) / 2, map(p2.w, width, 480), map(p2.h, height, 270));
-    context.drawImage(nums, p2.score * 3, 0, 3, 5, (width - width / 3) - width / 15/2, height / 10, width / 15, height / 9);
+    context.drawImage(nums, p2.score * 3, 0, 3, 5, (width - width / 3) - width / 15 / 2, height / 10, width / 15, height / 9);
     //dotted line
     context.strokeStyle = "#FFF";
     context.beginPath();
@@ -81,16 +81,12 @@ socket.on('p2', function (data) {
 let up = false;
 let down = false;
 window.addEventListener('keydown', event => {
-    if (event.key == 'w') {
-        up = true;
-    }
-    if (event.key == 's') {
-        down = true;
-    }
+    if (event.key == 'w' || event.keyCode == 38) up = true;
+    if (event.key == 's' || event.keyCode == 40) down = true;
 }, false);
 window.addEventListener('keyup', event => {
-    if (event.key == 'w') up = false;
-    if (event.key == 's') down = false;
+    if (event.key == 'w' || event.keyCode == 38) up = false;
+    if (event.key == 's' || event.keyCode == 40) down = false;
 }, false);
 
 setInterval(function () {

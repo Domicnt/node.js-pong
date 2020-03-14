@@ -27,6 +27,16 @@ exports.step = function (p1, p2, ball, width, height) {
     ball.velX *= 1.0005;
     ball.velY *= 1.0005;
     ball.r *= .9995;
+    if (p1.y - p1.h / 2 < 0) {
+        p1.y = p1.h;
+    } else if (p1.y + p1.h / 2 > height) {
+        p1.y = height - p1.h
+    }
+    if (p2.y - p2.h / 2 < 0) {
+        p2.y = p2.h;
+    } else if (p2.y + p2.h / 2 > height) {
+        p2.y = height - p2.h
+    }
 }
 
 function reset(p1, p2, ball, width, height) {
