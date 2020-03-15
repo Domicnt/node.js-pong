@@ -6,3 +6,9 @@
     position: fixed;
     width: 100%;
 }
+
+input[type='text'],
+input[type='number'],
+input {
+    font-size: 16px;
+}
