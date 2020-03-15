@@ -121,7 +121,7 @@ setInterval(function () {
 }, 10);
 
 //no mobile scrolling
-document.body.addEventListener('touchmove', function (event) {
-    passive: false
-    event.preventDefault();
-});
+function preventDefault(e) {
+    e.preventDefault();
+}
+document.body.addEventListener('touchmove', preventDefault, { passive: false });
