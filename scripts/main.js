@@ -123,7 +123,9 @@ setInterval(function () {
 //no mobile scrolling
 canvas.addEventListener("touchmove", function (e) {
     e.stopPropagation();
+    return false;
 }, { passive: false });
 document.addEventListener("touchmove", function (e) {
     e.preventDefault();
+    return false;
 }, { passive: false });
