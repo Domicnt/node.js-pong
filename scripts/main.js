@@ -119,3 +119,9 @@ setInterval(function () {
     } else if (up) socket.emit('up', ID);
     else if (down) socket.emit('down', ID);
 }, 10);
+
+//no mobile scrolling
+document.body.addEventListener('touchmove', function (event) {
+    passive: false
+    event.preventDefault();
+});
