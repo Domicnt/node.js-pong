@@ -119,13 +119,3 @@ setInterval(function () {
     } else if (up) socket.emit('up', ID);
     else if (down) socket.emit('down', ID);
 }, 10);
-
-//no mobile scrolling
-canvas.addEventListener("touchmove", function (e) {
-    e.stopPropagation();
-    return false;
-}, { passive: false });
-document.addEventListener("touchmove", function (e) {
-    e.preventDefault();
-    return false;
-}, { passive: false });
