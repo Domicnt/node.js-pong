@@ -20,7 +20,7 @@ exports.step = function (p1, p2, ball, width, height) {
         ball.velX = -Math.abs(ball.velX);
         ball.velY += .5 * (Math.round(Math.random()) - .5);
     }
-    if (ball.x + ball.r >= width) {
+    if (ball.x + ball.r >= p2.x - p2.w / 2) {
         reset(p1, p2, ball, width, height);
         p1.score++;
         if (p1.score >= 7) {
@@ -28,7 +28,7 @@ exports.step = function (p1, p2, ball, width, height) {
             p2.score = 0;
             return 1;
         }
-    } else if (ball.x - ball.r <= 0) {
+    } else if (ball.x - ball.r <= p1.x + p1.w / 2) {
         reset(p1, p2, ball, width, height);
         p2.score++;
         if (p2.score >= 7) {
@@ -61,5 +61,4 @@ function reset(p1, p2, ball, width, height) {
     ball.y = height / 2;
     ball.velX = Math.round(Math.random()) * 4 - 2;
     ball.velY = Math.round(Math.random()) * 4 - 2;
-    ball.r = 7.5;
 }

@@ -13,17 +13,17 @@ let width = 480;
 let height = 270;
 
 let p1 = {
-    x: 0,
+    x: width / 40,
     y: height / 2,
-    w: width / 40,
+    w: width / 80,
     h: height / 5,
     ID: 0,
     score: 0
 };
 let p2 = {
-    x: width,
+    x: width - width / 40,
     y: height / 2,
-    w: width / 40,
+    w: width / 80,
     h: height / 5,
     ID: 0,
     score: 0
