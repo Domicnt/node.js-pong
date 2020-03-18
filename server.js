@@ -33,7 +33,7 @@ let ball = {
     y: height / 2,
     velX: Math.round(Math.random()) * 4 - 2,
     velY: Math.round(Math.random()) * 4 - 2,
-    r: 10
+    r: 7.5
 };
 
 setInterval(function () {

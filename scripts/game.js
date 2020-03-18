@@ -1,4 +1,5 @@
 function overlap(a, b) {
+    a.h *= 1.1;//extra range so players dont feel cheated
     return (a.y - a.h / 2 < b.y + b.r && a.y + a.h / 2 > b.y - b.r && a.x - a.w / 2 < b.x + b.r && a.x + a.w / 2 > b.x - b.r);
 }
 
@@ -38,7 +39,6 @@ exports.step = function (p1, p2, ball, width, height) {
     }
     ball.velX *= 1.0005;
     ball.velY *= 1.0005;
-    ball.r *= .9995;
     if (p1.y - p1.h / 2 < 0) {
         p1.y = p1.h / 2;
     } else if (p1.y + p1.h / 2 > height) {
@@ -61,5 +61,5 @@ function reset(p1, p2, ball, width, height) {
     ball.y = height / 2;
     ball.velX = Math.round(Math.random()) * 4 - 2;
     ball.velY = Math.round(Math.random()) * 4 - 2;
-    ball.r = 10;
+    ball.r = 7.5;
 }
