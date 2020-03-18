@@ -1,5 +1,5 @@
 function overlap(a, b) {
-    let ex = 1.2;//extra range for height
+    let ex = 1.1;//extra range for height
     return (a.y - (a.h * ex) / 2 < b.y + b.r && a.y + (a.h * ex) / 2 > b.y - b.r && a.x - a.w / 2 < b.x + b.r && a.x + a.w / 2 > b.x - b.r);
 }
 
@@ -20,7 +20,7 @@ exports.step = function (p1, p2, ball, width, height) {
         ball.velX = -Math.abs(ball.velX);
         ball.velY += .5 * (Math.round(Math.random()) - .5);
     }
-    if (ball.x + ball.r >= p2.x + p2.w / 2) {
+    if (ball.x + ball.r >= width) {
         reset(p1, p2, ball, width, height);
         p1.score++;
         if (p1.score >= 7) {
@@ -28,7 +28,7 @@ exports.step = function (p1, p2, ball, width, height) {
             p2.score = 0;
             return 1;
         }
-    } else if (ball.x - ball.r <= p1.x - p1.w / 2) {
+    } else if (ball.x - ball.r <= 0) {
         reset(p1, p2, ball, width, height);
         p2.score++;
         if (p2.score >= 7) {
