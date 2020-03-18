@@ -100,8 +100,8 @@ socket.on('p2', function (data) {
 });
 socket.on('winner', data => {
     console.log("Player " + data + " wins!");
-    if (data == 1) context.drawImage(p1win, width / 2 - width / 2.5, height / 2 - height / 4, width / 1.25, height / 2);
-    else if (data == 2) context.drawImage(p2win, width / 2 - width / 2.5, height / 2 - height / 4, width / 1.25, height / 2);
+    if (data == 1) context.drawImage(p1win, map(p1.x + p1.w * 2, width, 480), height / 2 - height / 4, width - 2 * map(p1.x + p1.w * 2, width, 480), height / 2);
+    else if (data == 2) context.drawImage(p2win, map(p1.x + p1.w * 2, width, 480), height / 2 - height / 4, width - 2 * map(p1.x + p1.w * 2, width, 480), height / 2);
 });
 
 let up = false;
