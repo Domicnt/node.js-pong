@@ -15,8 +15,8 @@ let p2win = new Image();
 p2win.src = 'images/p2win.png';
 
 //set up socket
-//var socket = io.connect('http://localhost/');
-var socket = io.connect('https://nodejs-pong.herokuapp.com');
+var socket = io.connect('http://localhost/');
+//var socket = io.connect('https://nodejs-pong.herokuapp.com');
 
 //local variables
 let p1 = {

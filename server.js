@@ -13,7 +13,7 @@ let width = 480;
 let height = 270;
 
 let p1 = {
-    x: width / 40,
+    x: width / 30,
     y: height / 2,
     w: width / 80,
     h: height / 5,
@@ -21,7 +21,7 @@ let p1 = {
     score: 0
 };
 let p2 = {
-    x: width - width / 40,
+    x: width - width / 30,
     y: height / 2,
     w: width / 80,
     h: height / 5,
