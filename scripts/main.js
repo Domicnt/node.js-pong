@@ -88,6 +88,9 @@ socket.on('p2', function (data) {
     p2 = data;
     draw();
 });
+socket.on('winner', data => {
+    console.log("Player " + data + " wins!");
+});
 
 let up = false;
 let down = false;
