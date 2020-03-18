@@ -62,9 +62,15 @@ function draw() {
     //dotted line
     context.strokeStyle = "#FFF";
     context.beginPath();
-    context.setLineDash([height / 20, height / 20]);
-    context.moveTo(width / 2, 0);
+    context.lineWidth = "6";
+    context.setLineDash([height / 30, height / 60]);
+    context.moveTo(width / 2, height / 120);
     context.lineTo(width / 2, height);
+    context.stroke();
+    context.setLineDash([]);
+    //border
+    context.beginPath();
+    context.rect(0, 0, width, height);
     context.stroke();
 }
 
