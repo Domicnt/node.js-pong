@@ -76,19 +76,19 @@ io.on('connection', function (socket) {
     socket.on('up', function (ID) {
         if (ID == connectionIDs[0]) {
             //player 1
-            p1.y--;
+            p1.y -= 2;
         } else if (ID == connectionIDs[1]) {
             //player 2
-            p2.y--;
+            p2.y -= 2;
         }
     });
     socket.on('down', function (ID) {
         if (ID == connectionIDs[0]) {
             //player 1
-            p1.y++;
+            p1.y += 2;
         } else if (ID == connectionIDs[1]) {
             //player 2
-            p2.y++;
+            p2.y += 2;
         }
     });
 
