@@ -38,7 +38,11 @@ let ball = {
 
 setInterval(function () {
     let winner = game.step(p1, p2, ball, width, height);
-    if (!!winner) io.sockets.emit('winner', winner); 
+    if (!!winner) {
+        io.sockets.emit('winner', winner);
+        var waitTill = new Date(new Date().getTime() + 2000);
+        while (waitTill > new Date()) { }
+    }
     io.sockets.emit('ball', ball);
     io.sockets.emit('p1', p1);
     io.sockets.emit('p2', p2);

@@ -9,10 +9,14 @@ context.canvas.height = height;
 context.imageSmoothingEnabled = false;
 let nums = new Image();
 nums.src = 'images/numbers.png';
+let p1win = new Image();
+p1win.src = 'images/p1win.png';
+let p2win = new Image();
+p2win.src = 'images/p2win.png';
 
 //set up socket
-//var socket = io.connect('http://localhost/');
-var socket = io.connect('https://nodejs-pong.herokuapp.com');
+var socket = io.connect('http://localhost/');
+//var socket = io.connect('https://nodejs-pong.herokuapp.com');
 
 //local variables
 let p1 = {
@@ -90,6 +94,8 @@ socket.on('p2', function (data) {
 });
 socket.on('winner', data => {
     console.log("Player " + data + " wins!");
+    if (data) context.drawImage(p1win, width / 2 - width / 2.5, height / 2 - height / 4, width / 1.25, height / 2);
+    else context.drawImage(p2win, width / 2 - width / 2.5, height / 2 - height / 4, width / 1.25, height / 2);
 });
 
 let up = false;
