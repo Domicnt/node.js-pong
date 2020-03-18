@@ -22,11 +22,19 @@ exports.step = function (p1, p2, ball, width, height) {
     if (ball.x + ball.r >= width) {
         reset(p1, p2, ball, width, height);
         p1.score++;
-        if (p1.score > 7) return 1;
+        if (p1.score > 7) {
+            p1.score = 0;
+            p2.score = 0;
+            return 1;
+        }
     } else if (ball.x - ball.r <= 0) {
         reset(p1, p2, ball, width, height);
         p2.score++;
-        if (p2.score > 7) return 2;
+        if (p2.score > 7) {
+            p1.score = 0;
+            p2.score = 0;
+            return 2;
+        }
     }
     ball.velX *= 1.0005;
     ball.velY *= 1.0005;
