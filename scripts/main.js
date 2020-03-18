@@ -111,7 +111,7 @@ window.addEventListener('mousemove', event => {
     mouse = true;
 }, false);
 
-let deadzone = height / 100;
+let deadzone = height / 50;
 setInterval(function () {
     if (player == 1 && mouse) {
         if (map(y, 270, height) < p1.y - deadzone) socket.emit('up', ID);
